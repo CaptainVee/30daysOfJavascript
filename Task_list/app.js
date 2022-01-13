@@ -2,7 +2,7 @@
 
 const form = document.querySelector("#task-form");
 const taskList = document.querySelector(".collection")
-const clearBtn = document.querySelector('clear-task')
+const clearBtn = document.querySelector(".clear-task")
 const filter = document.querySelector("#filter")
 const taskInput = document.querySelector("#task")
 
@@ -13,6 +13,12 @@ loadEventListeners()
 function loadEventListeners(){
     //Add task event
     form.addEventListener("submit", addTask);
+
+    //Remove task event
+    taskList.addEventListener("click", removeTask);
+
+    //Clear task event
+    clearBtn.addEventListener('click', clearTask);
 }
 
 //Add task function
@@ -43,5 +49,27 @@ function addTask(e) {
     taskInput.value = ""
 
     e.preventDefault();
+    
+}
+
+function removeTask(e) {
+    if(e.target.parentElement.classList.contains('delete-item')){
+        if(confirm("Are you sure?")){
+        e.target.parentElement.parentElement.remove()
+
+    }
+}
+}
+
+function clearTask() {
+    
+  // taskList.innerHTML = '';
+
+  // Faster
+  while(taskList.firstChild) {
+    taskList.removeChild(taskList.firstChild);
+  }
+
+  // https://jsperf.com/innerhtml-vs-removechild
     
 }
