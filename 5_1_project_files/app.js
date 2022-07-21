@@ -27,3 +27,35 @@ Person.prototype.getsMarried = function(newLastname){
 
 mary.getsMarried('cow')
 console.log(mary.getFullname())
+
+// Something something
+const personPrototypes = {
+	greeting: function(){
+		return `Hello there ${this.firstname} ${this.lastname}`
+	},
+	getsMarried: function(newLastname){
+		this.lastname = newLastname
+	}
+}
+
+
+
+
+const biggy = Object.create(personPrototypes)
+biggy.firstname = 'biggy'
+biggy.lastname = 'fat'
+biggy.age = 29
+
+biggy.getsMarried("biggy biggy")
+
+console.log(biggy.greeting())
+
+
+
+
+
+
+
+
+
+
