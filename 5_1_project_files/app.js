@@ -51,6 +51,7 @@ biggy.getsMarried("biggy biggy")
 console.log(biggy.greeting())
 
 
+// ES6 syntax
 
 
 
