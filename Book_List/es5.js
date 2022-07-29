@@ -26,8 +26,23 @@ UI.prototype.addBookToList = function(book){
 
 // Error alert function
 
-UI.prototype.showAlert = function(){
-	
+UI.prototype.showAlert = function(message, className){
+	// create div
+	const div = document.createElement('div')
+	// add classes
+	div.className = `alert ${className}`
+	// add text
+	div.appendChild(document.createTextNode(message))
+	// Get parent
+	const container = document.querySelector('.container')
+	// get form
+	const form = document.querySelector('#book-form')
+	// insert alert
+	container.insertBefore(div, form)
+	// set timout after 3sec
+	setTimeout(function(){
+		document.querySelector('.alert').remove
+	}, 3000)
 }
 
 // Clear Fields function
