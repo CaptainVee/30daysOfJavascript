@@ -41,8 +41,15 @@ UI.prototype.showAlert = function(message, className){
 	container.insertBefore(div, form)
 	// set timout after 3sec
 	setTimeout(function(){
-		document.querySelector('.alert').remove
+		document.querySelector('.alert').remove()
 	}, 3000)
+}
+
+// Delete book function
+UI.prototype.deleteBook = function(target){
+	if( target === 'delete'){
+		target.parentElement.parentElement
+	}
 }
 
 // Clear Fields function
@@ -76,9 +83,19 @@ document.getElementById('book-form').addEventListener('submit',
 		// Add book to list 
 		ui.addBookToList(book)
 
+		// show success
+		ui.showAlert('Book Added!', 'success')
+
 		// Clear fields
 		ui.clearFields()
 		}
 
 		e.preventDefault()
 	})
+
+// Event listener for delete
+
+document.getElementById('book-list').addEventListener('click', function(e){
+
+	e.preventDefault()
+})
