@@ -47,8 +47,8 @@ UI.prototype.showAlert = function(message, className){
 
 // Delete book function
 UI.prototype.deleteBook = function(target){
-	if( target === 'delete'){
-		target.parentElement.parentElement
+	if( target.className === 'delete'){
+		target.parentElement.parentElement.remove()
 	}
 }
 
@@ -96,6 +96,11 @@ document.getElementById('book-form').addEventListener('submit',
 // Event listener for delete
 
 document.getElementById('book-list').addEventListener('click', function(e){
+
+	const ui = new UI()
+	ui.deleteBook(e.target)
+
+	ui.showAlert('Book removed!', 'success')
 
 	e.preventDefault()
 })
