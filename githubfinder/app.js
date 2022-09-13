@@ -16,11 +16,12 @@ searchUser.addEventListener('keyup', (e) =>{
 		  .then(data => {
 		  	if(data.profileData.message === 'Not Found'){
 		  		// show alert
-		  		console.log('cow')
+		  		ui.showAlert('User not found', 'alert alert-danger')
 
 		  	}else {
 		  		// show profile
 		  		ui.showProfile(data.profileData)
+		  		ui.showRepos(data.reposData)
 		  	}
 
 		  })

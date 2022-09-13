@@ -5,6 +5,7 @@ class UI{
 		this.profile = document.getElementById('profile')
 	}
 
+// Show profile
 	showProfile(user){
 		this.profile.innerHTML = `
 		<div class="card card-body mb-3">
@@ -33,5 +34,58 @@ class UI{
 		<h3 class="page-heading mb-3">Latest Repos</h3>
 		<div id="repos"></div>
 		`
+	}
+
+// Show user's repositories
+	showRepos(repos){
+		let output = ''
+		repos.forEach(repo => {
+			output += `
+			  <div class="card card-body mb-2">
+			    <div class="row">
+			      <div class="col-md-6">
+			      </div>
+			      <div class="col-md-6">
+			      </div>
+			    </div>
+			  </div>
+			`
+		})
+
+	}
+
+// show Alert
+	showAlert(message, className){
+		// Clear any remaining alert
+		this.clearAlert()
+		// Create div
+		const div = document.createElement('div')
+		// Add class
+		div.className = className
+		// Add Text
+		div.appendChild(document.createTextNode(message))
+		// Get parent
+		const container = document.querySelector('.search-container')
+		// Get search box
+		const search = document.querySelector('.search')
+		// Insert alert
+		container.insertBefore(div, search)
+
+		// Set timeout
+		setTimeout(() => {
+			this.clearAlert()
+		}, 3000)
+	}
+// Clear alert message
+	clearAlert(){
+		const currentAlert = document.querySelector('.alert')
+
+		if (currentAlert) {
+			currentAlert.remove()
+		}
+	}
+// clear profile
+	clearProfile(){
+		this.profile.innerHTML = ''
 	}
 }
