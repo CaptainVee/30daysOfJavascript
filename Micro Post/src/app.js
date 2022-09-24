@@ -16,6 +16,9 @@ document.querySelector('#posts').addEventListener('click', deletePost)
 // Listen for edit post
 document.querySelector('#posts').addEventListener('click', editPost)
 
+// Listen for cancel
+document.querySelector('.card-form').addEventListener('click', cancelEdit)
+
 
 // Get post
 function getPosts() {
@@ -28,18 +31,46 @@ function getPosts() {
 function addPost(){
 	const title = document.querySelector('#title').value
 	const body = document.querySelector('#body').value
+	const id = document.querySelector('#id').value
 
 	const data = {
 		title,
 		body
+		}
+
+	if (title === '' || body === '') {
+		ui.showAlert('please fill in all fields', 'alert alert-danger')
+
+	} else {
+		// Check for ID 
+		if (id === '') {
+
+			// Create Post
+			http.post('http://localhost:3000/posts', data)
+			  .then( data => {
+			  	ui.showAlert('Post added!', 'alert alert-success')
+			  	ui.changeFormState('add')
+			  	getPosts()
+			  })
+			  .catch(error => console.log(error))
+
+		} else {
+
+			// Update Post if there is ID
+			http.put(`http://localhost:3000/posts/${id}`, data)
+			  .then( data => {
+			  	ui.showAlert('Post updated!', 'alert alert-success')
+			  	ui.clearFields()
+			  	getPosts()
+			  })
+			  .catch(error => console.log(error))
+		}
+
+
+
+
 	}
-	http.post('http://localhost:3000/posts', data)
-	  .then( data => {
-	  	ui.showAlert('Post added!', 'alert alert-success')
-	  	ui.clearFields()
-	  	getPosts()
-	  })
-	  .catch(error => console.log(error))
+
 }
 
 // Delete post
@@ -81,5 +112,12 @@ function editPost(e){
 	e.preventDefault()
 }
 
-npm run json-server
-npm start
+// Cancel Edit State
+function cancelEdit(){
+	if (e.target.classList.contains('post-cancel')) {
+		ui.changeFormState('add')
+	}
+}
+
+// npm run json-server
+// npm start
