@@ -5,7 +5,7 @@ class UI {
 		this.bodyInput = document.querySelector('#body')
 		this.idInput = document.querySelector('#id')
 		this.postSubmit = document.querySelector('.post-submit')
-		this.forState = document.querySelector('add')
+		this.forState = 'add'
 	}
 
 	showPosts(posts){
@@ -76,13 +76,13 @@ class UI {
 
 	// Change form state
 	changeFormState(type){
-		if (type === edit) {
+		if (type === 'edit') {
 			this.postSubmit.textContent = 'Update Post'
 			this.postSubmit.className = 'post-submit btn btn-warning btn-block'
 
 			// Create cancel button
 			const button = document.createElement('button')
-			button.className = 'post-cancel btn btn-danger btn-block'
+			button.className = 'post-cancel btn btn-light btn-block'
 			button.appendChild(document.createTextNode('Cancel Edit'))
 
 			const cardForm = document.querySelector('.card-form')
@@ -90,8 +90,8 @@ class UI {
 			cardForm.insertBefore(button, formEnd)
 		}else{
 
-			this.postSubmit.textContent = 'Update Post'
-			this.postSubmit.className = 'post-submit btn btn-warning btn-block'
+			this.postSubmit.textContent = 'Post It'
+			this.postSubmit.className = 'post-submit btn btn-primary btn-block'
 
 			// Remove Cancel button if there
 			if (document.querySelector('.post-cancel')) {

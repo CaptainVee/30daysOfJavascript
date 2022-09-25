@@ -49,7 +49,7 @@ function addPost(){
 			http.post('http://localhost:3000/posts', data)
 			  .then( data => {
 			  	ui.showAlert('Post added!', 'alert alert-success')
-			  	ui.changeFormState('add')
+			  	ui.clearFields()
 			  	getPosts()
 			  })
 			  .catch(error => console.log(error))
@@ -60,7 +60,7 @@ function addPost(){
 			http.put(`http://localhost:3000/posts/${id}`, data)
 			  .then( data => {
 			  	ui.showAlert('Post updated!', 'alert alert-success')
-			  	ui.clearFields()
+			  	ui.changeFormState('add')
 			  	getPosts()
 			  })
 			  .catch(error => console.log(error))
@@ -113,10 +113,12 @@ function editPost(e){
 }
 
 // Cancel Edit State
-function cancelEdit(){
+function cancelEdit(e){
 	if (e.target.classList.contains('post-cancel')) {
 		ui.changeFormState('add')
 	}
+
+	e.preventDefault()
 }
 
 // npm run json-server
